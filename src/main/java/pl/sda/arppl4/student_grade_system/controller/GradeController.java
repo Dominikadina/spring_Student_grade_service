@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.sda.arppl4.student_grade_system.model.Grade;
 import pl.sda.arppl4.student_grade_system.model.Student;
 import pl.sda.arppl4.student_grade_system.model.dto.CreateGradeRequest;
+import pl.sda.arppl4.student_grade_system.model.dto.GradeDTO;
 import pl.sda.arppl4.student_grade_system.service.GradeService;
 
 import java.util.List;
@@ -29,9 +30,9 @@ public class GradeController {
         gradeService.addGrade(studentId, subjectId, request);
     }
     @GetMapping("/list")
-    public List<Grade> getAllGrades(@RequestParam Long studentId) {
+    public List<GradeDTO> getAllGrades(@RequestParam Long studentId) {
         log.info("Called list of grades for student with id:" + studentId);
-        List<Grade> list = gradeService.getAllGrades(studentId);
+        List<GradeDTO> list = gradeService.getAllGrades(studentId);
         return list;
     }
 

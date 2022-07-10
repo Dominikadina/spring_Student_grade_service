@@ -27,7 +27,7 @@ public class SubjectService {
 
     public List<SubjectDTO> getAllSubjects() {
         List<Subject> subjectList = new ArrayList<>();
-               List<SubjectDTO> dtoList = new ArrayList<>();
+        List<SubjectDTO> dtoList = new ArrayList<>();
         for (Subject subject : subjectList) {
             dtoList.add(subject.mapToSubjectDTO());
         }

@@ -7,6 +7,7 @@ import pl.sda.arppl4.student_grade_system.model.Grade;
 import pl.sda.arppl4.student_grade_system.model.Student;
 import pl.sda.arppl4.student_grade_system.model.Subject;
 import pl.sda.arppl4.student_grade_system.model.dto.CreateGradeRequest;
+import pl.sda.arppl4.student_grade_system.model.dto.GradeDTO;
 import pl.sda.arppl4.student_grade_system.repository.GradeRepository;
 import pl.sda.arppl4.student_grade_system.repository.StudentRepository;
 import pl.sda.arppl4.student_grade_system.repository.SubjectRepository;
@@ -48,14 +49,14 @@ public class GradeService {
         throw new EntityNotFoundException("We couldn't find student with Id: " + studentId);
     }
 
-    public List<Grade> getAllGrades(Long studentId) {
+    public List<GradeDTO> getAllGrades(Long studentId) {
         Optional<Student> studentOptional = studentRepository.findById(studentId);
         if (studentOptional.isPresent()) {
             Student student = studentOptional.get();
 
-            List<Grade> gradesList = new ArrayList<>(student.getGrade());
-            // for(Student student : gradesList){
-            return gradesList;
+            List<GradeDTO> gradesListDTO = new ArrayList<>(student.getGradeDTO());
+
+            return gradesListDTO;
         }
         throw new EntityNotFoundException("We couldn't find student with Id: " + studentId);
     }

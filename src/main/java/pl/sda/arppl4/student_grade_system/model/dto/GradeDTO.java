@@ -1,5 +1,12 @@
 package pl.sda.arppl4.student_grade_system.model.dto;
 
-public class GradeDTO {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class GradeDTO {
+private Integer valueGrade;
 }
