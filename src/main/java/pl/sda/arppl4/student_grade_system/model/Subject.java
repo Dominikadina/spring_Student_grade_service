@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import pl.sda.arppl4.student_grade_system.model.dto.StudentDTO;
+import pl.sda.arppl4.student_grade_system.model.dto.SubjectDTO;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -27,4 +29,12 @@ private String name;
     @JsonBackReference
     private Set<Grade> grade;
 
+    public SubjectDTO mapToSubjectDTO(){
+        return new SubjectDTO(id, name);
+    }
+
+    public Subject(String name) {
+        this.name = name;
+
+    }
 }

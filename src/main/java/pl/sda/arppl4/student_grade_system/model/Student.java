@@ -5,8 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import pl.sda.arppl4.student_grade_system.model.dto.StudentDTO;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Set;
 
@@ -21,7 +23,7 @@ public class Student {
 
     private String name;
     private String surname;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     private String indeksNo;
 
 
@@ -29,4 +31,14 @@ public class Student {
     @EqualsAndHashCode.Exclude
     private Set<Grade> grade;
 
+    public StudentDTO mapToStudentDTO(){
+        return new StudentDTO(id, name, surname, dateOfBirth, indeksNo);
+    }
+
+    public Student(String name, String surname, LocalDate dateOfBirth, String indeksNo) {
+        this.name = name;
+        this.surname = surname;
+        this.dateOfBirth = dateOfBirth;
+        this.indeksNo = indeksNo;
+    }
 }

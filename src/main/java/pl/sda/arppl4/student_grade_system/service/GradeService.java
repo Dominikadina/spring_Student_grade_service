@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import pl.sda.arppl4.student_grade_system.model.Grade;
 import pl.sda.arppl4.student_grade_system.model.Student;
 import pl.sda.arppl4.student_grade_system.model.Subject;
+import pl.sda.arppl4.student_grade_system.model.dto.CreateGradeRequest;
 import pl.sda.arppl4.student_grade_system.repository.GradeRepository;
 import pl.sda.arppl4.student_grade_system.repository.StudentRepository;
 import pl.sda.arppl4.student_grade_system.repository.SubjectRepository;
@@ -25,7 +26,7 @@ public class GradeService {
     private final StudentRepository studentRepository;
     private final SubjectRepository subjectRepository;
 
-    public void addGrade(Long studentId, Long subjectId, Grade grade) {
+    public void addGrade(Long studentId, Long subjectId, CreateGradeRequest request) {
         Optional<Student> studentOptional = studentRepository.findById(studentId);
         if (studentOptional.isPresent()) {
             Student student = studentOptional.get();
@@ -35,7 +36,7 @@ public class GradeService {
                 Subject subject = subjectOptional.get();
 
                 Grade newGrade = new Grade();
-                newGrade.setValue(grade.getValue());
+                newGrade.setValue(request.getValueGrade());
                 newGrade.setStudent(student);
                 newGrade.setSubject(subject);
                 gradeRepository.save(newGrade);

@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import pl.sda.arppl4.student_grade_system.model.Grade;
 import pl.sda.arppl4.student_grade_system.model.Student;
+import pl.sda.arppl4.student_grade_system.model.dto.CreateGradeRequest;
 import pl.sda.arppl4.student_grade_system.service.GradeService;
 
 import java.util.List;
@@ -23,9 +24,9 @@ public class GradeController {
     // aby dodać grade potrzebujemy studentId
     // aby dodać grade potrzebujemy subjectId
     @PostMapping("/add")
-    public void addGrade(@RequestParam Long studentId,@RequestParam Long subjectId, @RequestBody Grade grade) {
+    public void addGrade(@RequestParam Long studentId,@RequestParam Long subjectId, @RequestBody CreateGradeRequest request) {
         log.info("Commend add grade was called:");
-        gradeService.addGrade(studentId, subjectId, grade);
+        gradeService.addGrade(studentId, subjectId, request);
     }
     @GetMapping("/list")
     public List<Grade> getAllGrades(@RequestParam Long studentId) {

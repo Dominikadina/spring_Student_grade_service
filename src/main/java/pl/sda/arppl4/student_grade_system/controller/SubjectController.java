@@ -6,6 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import pl.sda.arppl4.student_grade_system.model.Student;
 import pl.sda.arppl4.student_grade_system.model.Subject;
+import pl.sda.arppl4.student_grade_system.model.dto.CreateSubjectRequest;
+import pl.sda.arppl4.student_grade_system.model.dto.SubjectDTO;
 import pl.sda.arppl4.student_grade_system.service.SubjectService;
 
 import java.util.List;
@@ -18,14 +20,14 @@ public class SubjectController {
     private final SubjectService subjectService;
 
     @PostMapping("/add")
-            public void addSubject(@RequestBody Subject subject){
-        log.info("Comend adding subcejt was called:" + subject);
-        subjectService.addSubject(subject);
+            public void addSubject(@RequestBody CreateSubjectRequest request){
+        log.info("Comend adding subcejt was called:" + request);
+        subjectService.addSubject(request);
     }
  @GetMapping("/list")
- List<Subject> getAllSubjects(){
+ List<SubjectDTO> getAllSubjects(){
         log.info("Method list all subjcts");
-        List<Subject> listaSubject = subjectService.getAllSubjects();
+        List<SubjectDTO> listaSubject = subjectService.getAllSubjects();
         return listaSubject;
  }
 @DeleteMapping("/delete/{identifier}")

@@ -5,6 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pl.sda.arppl4.student_grade_system.model.Student;
+import pl.sda.arppl4.student_grade_system.model.dto.CreateStudentRequest;
+import pl.sda.arppl4.student_grade_system.model.dto.StudentDTO;
 import pl.sda.arppl4.student_grade_system.service.StudentService;
 
 import java.util.List;
@@ -18,15 +20,15 @@ public class StudentController {
 
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addStudent(@RequestBody Student student) {
-        log.info("Called adding student method:" + student);
-        studentService.addStudent(student);
+    public void addStudent(@RequestBody CreateStudentRequest request) {
+        log.info("Called adding student method:" + request);
+        studentService.addStudent(request);
     }
 
     @GetMapping("/list")
-    public List<Student> getAllStudents() {
+    public List<StudentDTO> getAllStudents() {
         log.info("Called list all Students method");
-        List<Student> list = studentService.getAllStudents();
+        List<StudentDTO> list = studentService.getAllStudents();
         return list;
     }
 

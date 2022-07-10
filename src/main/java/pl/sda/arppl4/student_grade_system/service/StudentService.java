@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import pl.sda.arppl4.student_grade_system.model.Student;
+import pl.sda.arppl4.student_grade_system.model.dto.CreateStudentRequest;
+import pl.sda.arppl4.student_grade_system.model.dto.StudentDTO;
 import pl.sda.arppl4.student_grade_system.repository.StudentRepository;
 
 import javax.persistence.EntityNotFoundException;
@@ -17,13 +19,20 @@ import java.util.Optional;
 public class StudentService {
     private final StudentRepository studentRepository;
 
-    public void addStudent(Student student) {
+    public void addStudent(CreateStudentRequest request) {
+//        Student student = new Student(null, request.getNameStudent(), request.getSurnameStudent(), request.getDateOfBirthStudent(), request.getIndeksNoStudent(), null);
+        Student student = new Student(request.getNameStudent(), request.getSurnameStudent(), request.getDateOfBirthStudent(), request.getIndeksNoStudent());
+
         studentRepository.save(student);
     }
 
-    public List<Student> getAllStudents() {
-        return studentRepository.findAll();
-
+    public List<StudentDTO> getAllStudents() {
+        List<Student> studentList = studentRepository.findAll();
+        List<StudentDTO> dtoList = new ArrayList<>();
+        for (Student student : studentList) {
+            dtoList.add(student.mapToStudentDTO());
+        }
+        return dtoList;
     }
 
     public void deleteById(Long identyfier) {
